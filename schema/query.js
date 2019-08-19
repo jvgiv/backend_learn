@@ -6,3 +6,5 @@ const Skills = require('../models/skillsModel.js')
 const Reviews = require('../models/reviewModel.js')
 // Need to make types in type file
 const { UserType, LessonType, SkillsType, ReviewsType } = require('./types.js')
+
+const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
