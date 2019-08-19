@@ -31,6 +31,8 @@ const UserType = new GraphQLObjectType({
         facebook_id: { type: GraphQLFloat },
         google_id: { type: GraphQLFloat },
         earnings: { type: GraphQLFloat },
+        rating: { type: GraphQLFloat },
+        number_of_ratings: { type: GraphQLInt },
         skills: { 
             type: new GraphQLList(SkillsType),
             resolve(parent, args) {
@@ -118,6 +120,7 @@ const ReviewsType = new GraphQLObjectType({
         review_skill: { type: GraphQLString },
         review_skill_subset: { type: GraphQLString },
         review: { type: GraphQLString },
+        rating: { type: GraphQLFloat },
         reviewed_user_id: { type: new GraphQLNonNull(GraphQLID) },
         review_author: {
             type: UserType,
