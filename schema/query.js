@@ -1,6 +1,5 @@
 const graphql = require('graphql')
 const User = require('../models/userModel.js')
-// Need to do these models next
 const Lesson = require('../models/lessonModel.js')
 const Skills = require('../models/skillsModel.js')
 const Reviews = require('../models/reviewModel.js')
@@ -129,3 +128,5 @@ const RootQuery = new GraphQLObjectType({
         }
     }
 })
+
+module.exports = RootQuery
