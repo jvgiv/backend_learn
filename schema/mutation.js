@@ -188,3 +188,5 @@ const Mutation = new GraphQLObjectType({
         }
     })
 })
+
+module.exports = Mutation
