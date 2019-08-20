@@ -15,6 +15,9 @@ async function insert(lesson) {
     return findById(id)
 }
 
+function findByUserId(userId) {
+    return db('lessons').where({ userId })
+}
 
 async function update(id, changes) {
     await db('lessons')
@@ -34,5 +37,6 @@ module.exports = {
     findById,
     insert,
     update,
+    findByUserId,
     remove
 }

@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "server": "node index.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",

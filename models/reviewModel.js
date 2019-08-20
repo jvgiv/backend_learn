@@ -10,6 +10,10 @@ function findById(id) {
         .first()
 }
 
+function findByUserId(userId) {
+    return db('review').where({ userId })
+}
+
 async function insert(review) {
     const [id] = await db('review').insert(review, 'id')
     return findById(id)
@@ -33,5 +37,6 @@ module.exports = {
     findById,
     insert,
     update,
-    remove
+    remove,
+    findByUserId
 }

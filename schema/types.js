@@ -42,13 +42,13 @@ const UserType = new GraphQLObjectType({
         lessons_taken: { 
             type: new GraphQLList(LessonType),
             resolve(parent, args) {
-                return Lessons.findByUserId(parent.id)
+                return Lesson.findByUserId(parent.id)
             }  
         },
         lessons_given: { 
             type: new GraphQLList(LessonType),
             resolve(parent, args) {
-                return Lessons.findByUserId(parent.id)
+                return Lesson.findByUserId(parent.id)
             }  
         },
         reviews_written: {
@@ -107,7 +107,7 @@ const SkillsType = new GraphQLObjectType({
         skill: { type: GraphQLString },
         skill_subset: { type: GraphQLString },
         description: { type: GraphQLString },
-        years_experience: { type: GraphQLInt },
+        years_experience: { type: GraphQLString },
         hourly_rate: { type: GraphQLFloat }
     })
 })
