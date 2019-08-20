@@ -105,6 +105,15 @@ const Mutation = new GraphQLObjectType({
         },
         updateLesson: {
             type: LessonType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                location: { type: GraphQLString },
+                date: { type: GraphQLString },
+                length_hours: { type: GraphQLFloat },
+                cost: { type: GraphQLFloat },
+                approved_by_giver: {type: GraphQLBoolean }, 
+                completed: {type: GraphQLBoolean }
+            }
         },
         deleteLesson: {
             type: LessonType,
@@ -128,7 +137,14 @@ const Mutation = new GraphQLObjectType({
         },
         updateSkill: {
             type: SkillsType,
-            args: {}
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                skill: { type: GraphQLString },
+                skill_subset: { type: GraphQLString },
+                description: { type: GraphQLString },
+                years_experience: { type: GraphQLInt },
+                hourly_rate: { type: GraphQLFloat }
+            }
         },
         deleteSkill: {
             type: SkillsType,
@@ -153,6 +169,13 @@ const Mutation = new GraphQLObjectType({
         },
         updateReview: {
             type: ReviewsType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                review_skill: { type: GraphQLString },
+                review_skill_subset: { type: GraphQLString },
+                review: { type: GraphQLString },
+                rating: { type: GraphQLFloat },
+            }
         },
         deleteReview: {
             type: ReviewsType,
