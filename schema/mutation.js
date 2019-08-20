@@ -91,37 +91,77 @@ const Mutation = new GraphQLObjectType({
       }
         },
         addLesson: {
-            location: { type: GraphQLString },
-            date: { type: GraphQLString },
-            length_hours: { type: GraphQLFloat },
-            cost: { type: GraphQLFloat },
-            lesson_giver_id: { type: new GraphQLNonNull(GraphQLID) },
-            lesson_taker_id: { type: new GraphQLNonNull(GraphQLID) },
-            approved_by_giver: {type: GraphQLBoolean }, 
-            completed: {type: GraphQLBoolean }
+            type: LessonType,
+            args: {
+                location: { type: GraphQLString },
+                date: { type: GraphQLString },
+                length_hours: { type: GraphQLFloat },
+                cost: { type: GraphQLFloat },
+                lesson_giver_id: { type: new GraphQLNonNull(GraphQLID) },
+                lesson_taker_id: { type: new GraphQLNonNull(GraphQLID) },
+                approved_by_giver: {type: GraphQLBoolean }, 
+                completed: {type: GraphQLBoolean }
+            }
         },
-        updateLesson: {},
-        deleteLesson: {},
+        updateLesson: {
+            type: LessonType,
+        },
+        deleteLesson: {
+            type: LessonType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+                return Lesson.remove(args.id)
+            }
+        },
         addSkill: {
-            user_id: { type: new GraphQLNonNull(GraphQLID) },
-            skill: { type: GraphQLString },
-            skill_subset: { type: GraphQLString },
-            description: { type: GraphQLString },
-            years_experience: { type: GraphQLInt },
-            hourly_rate: { type: GraphQLFloat }
+            type: SkillsType,
+            args: {
+                user_id: { type: new GraphQLNonNull(GraphQLID) },
+                skill: { type: GraphQLString },
+                skill_subset: { type: GraphQLString },
+                description: { type: GraphQLString },
+                years_experience: { type: GraphQLInt },
+                hourly_rate: { type: GraphQLFloat }
+            }
         },
-        updateSkill: {},
-        deleteSkill: {},
+        updateSkill: {
+            type: SkillsType,
+            args: {}
+        },
+        deleteSkill: {
+            type: SkillsType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+                return Skills.remove(args.id)
+            }
+        },
         addReview: {
-            skills_id: { type: new GraphQLNonNull(GraphQLID) },
-            review_skill: { type: GraphQLString },
-            review_skill_subset: { type: GraphQLString },
-            review: { type: GraphQLString },
-            rating: { type: GraphQLFloat },
-            reviewed_user_id: { type: new GraphQLNonNull(GraphQLID) },
-            reviewer_user_id: { type: new GraphQLNonNull(GraphQLID) },
+            type: ReviewsType,
+            args: {
+                skills_id: { type: new GraphQLNonNull(GraphQLID) },
+                review_skill: { type: GraphQLString },
+                review_skill_subset: { type: GraphQLString },
+                review: { type: GraphQLString },
+                rating: { type: GraphQLFloat },
+                reviewed_user_id: { type: new GraphQLNonNull(GraphQLID) },
+                reviewer_user_id: { type: new GraphQLNonNull(GraphQLID) },
+            }
         },
-        updateReview: {},
-        deleteReview: {}
+        updateReview: {
+            type: ReviewsType,
+        },
+        deleteReview: {
+            type: ReviewsType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+               return Reviews.remove(args.id)
+            }
+        }
     })
 })
