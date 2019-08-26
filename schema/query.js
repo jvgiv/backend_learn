@@ -45,7 +45,7 @@ const RootQuery = new GraphQLObjectType({
             }
         },
         getLessons: {
-            type: LessonType,
+            type: new GraphQLList(LessonType),
             description: "Gets all lessons",
             resolve(parent, args) {
                 return Lesson.find()
@@ -61,7 +61,7 @@ const RootQuery = new GraphQLObjectType({
             }
         },
         getSkills: {
-            type: SkillsType,
+            type: new GraphQLList(SkillsType),
             description: "Fetches a list of available skills",
             resolve(parents, args) {
                 return Skills.find()
@@ -94,7 +94,7 @@ const RootQuery = new GraphQLObjectType({
             }
         },
         getReviews: {
-            type: ReviewsType,
+            type: new GraphQLList(ReviewsType),
             description: "Fetches a list of all reviews.",
             resolve(parents, args) {
                 return Reviews.find()
