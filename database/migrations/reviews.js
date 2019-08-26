@@ -5,20 +5,8 @@ exports.up = function(knex, Promise) {
         tbl.string('review_skill_subset', 256)
         tbl.string('review', 256)
         tbl.float('rating')
-        tbl
-            .integer('reviewer_user_id')
-            .unsigned()
-            .references('id')
-            .inTable('users')
-            .onDelete('CASCADE')
-            .notNull();
-        tbl
-            .integer('reviewed_user_id')
-            .unsigned()
-            .references('id')
-            .inTable('users')
-            .onDelete('CASCADE')
-            .notNull();
+        tbl.integer('reviewer_user_id')
+        tbl.integer('reviewed_user_id') 
         tbl
             .integer('skills_id')
             .unsigned()

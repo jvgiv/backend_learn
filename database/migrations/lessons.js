@@ -14,13 +14,7 @@ exports.up = function(knex, Promise) {
             .inTable('users')
             .onDelete('CASCADE')
             .notNull();
-        tbl
-            .integer('lesson_taker_id')
-            .unsigned()
-            .references('id')
-            .inTable('users')
-            .onDelete('CASCADE')
-            .notNull();
+        tbl.integer('lesson_taker_id')
     })
 }
 

@@ -12,6 +12,26 @@ exports.seed = function(knex) {
                 completed: false,
                 lesson_giver_id: 1,
                 lesson_taker_id: 3
+            },
+            {
+                location: "City Park",
+                date: "10/5/19",
+                length_hours: 1.5, 
+                cost: 0,
+                approved_by_giver: true, 
+                completed: false,
+                lesson_giver_id: 1,
+                lesson_taker_id: 2
+            },
+            {
+                location: "Town Park",
+                date: "12/5/20",
+                length_hours: 1.5, 
+                cost: 0,
+                approved_by_giver: true, 
+                completed: false,
+                lesson_giver_id: 1,
+                lesson_taker_id: 3
             }
         ])
     })

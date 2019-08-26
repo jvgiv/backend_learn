@@ -14,9 +14,9 @@ function findByUserId(userId) {
     return db('review').where({ userId })
 }
 
-async function insert(review) {
-    const [id] = await db('review').insert(review, 'id')
-    return findById(id)
+function insert(review) {
+    return db('review').insert(review)
+    
 }
 
 async function update(id, changes) {

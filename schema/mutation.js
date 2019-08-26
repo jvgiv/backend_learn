@@ -98,9 +98,22 @@ const Mutation = new GraphQLObjectType({
                 length_hours: { type: GraphQLFloat },
                 cost: { type: GraphQLFloat },
                 lesson_giver_id: { type: new GraphQLNonNull(GraphQLID) },
-                lesson_taker_id: { type: new GraphQLNonNull(GraphQLID) },
+                lesson_taker_id: { type: GraphQLInt },
                 approved_by_giver: {type: GraphQLBoolean }, 
                 completed: {type: GraphQLBoolean }
+            },
+            resolve(parent, args) {
+                return Lesson.insert(args)
+                    .then(res => {
+                        if (res) {
+                          return res;
+                        }
+                        return new Error('The new lesson could not be created.');
+                      })
+                    .catch(() => {
+                        
+                        return new Error('There was an error completing your request.');
+                      })
             }
         },
         updateLesson: {
@@ -113,7 +126,19 @@ const Mutation = new GraphQLObjectType({
                 cost: { type: GraphQLFloat },
                 approved_by_giver: {type: GraphQLBoolean }, 
                 completed: {type: GraphQLBoolean }
-            }
+            },
+            resolve(parent, args) {
+                return Lesson.update(args.id, args)
+                  .then(res => {
+                    if (res) {
+                      return res;
+                    }
+                    return new Error('The lesson could not be updated.');
+                  })
+                  .catch(() => {
+                    return new Error('There was an error completing your request.');
+                  });
+              }
         },
         deleteLesson: {
             type: LessonType,
@@ -133,6 +158,18 @@ const Mutation = new GraphQLObjectType({
                 description: { type: GraphQLString },
                 years_experience: { type: GraphQLInt },
                 hourly_rate: { type: GraphQLFloat }
+            },
+            resolve(parent, args) {
+                return Skills.insert(args)
+                    .then(res => {
+                        if (res) {
+                          return res;
+                        }
+                        return new Error('The new skill could not be created.');
+                      })
+                    .catch(() => {
+                        return new Error('There was an error completing your request.');
+                      })
             }
         },
         updateSkill: {
@@ -144,7 +181,19 @@ const Mutation = new GraphQLObjectType({
                 description: { type: GraphQLString },
                 years_experience: { type: GraphQLInt },
                 hourly_rate: { type: GraphQLFloat }
-            }
+            },
+            resolve(parent, args) {
+                return Skills.update(args.id, args)
+                  .then(res => {
+                    if (res) {
+                      return res;
+                    }
+                    return new Error('The skill could not be updated.');
+                  })
+                  .catch(() => {
+                    return new Error('There was an error completing your request.');
+                  });
+              }
         },
         deleteSkill: {
             type: SkillsType,
@@ -165,6 +214,18 @@ const Mutation = new GraphQLObjectType({
                 rating: { type: GraphQLFloat },
                 reviewed_user_id: { type: new GraphQLNonNull(GraphQLID) },
                 reviewer_user_id: { type: new GraphQLNonNull(GraphQLID) },
+            },
+            resolve(parent, args) {
+                return Reviews.insert(args)
+                    .then(res => {
+                        if (res) {
+                          return res;
+                        }
+                        return new Error('The new review could not be created.');
+                      })
+                    .catch(() => {
+                        return new Error('There was an error completing your request.');
+                      })
             }
         },
         updateReview: {
@@ -175,7 +236,19 @@ const Mutation = new GraphQLObjectType({
                 review_skill_subset: { type: GraphQLString },
                 review: { type: GraphQLString },
                 rating: { type: GraphQLFloat },
-            }
+            },
+            resolve(parent, args) {
+                return Reviews.update(args.id, args)
+                  .then(res => {
+                    if (res) {
+                      return res;
+                    }
+                    return new Error('The review could not be updated.');
+                  })
+                  .catch(() => {
+                    return new Error('There was an error completing your request.');
+                  });
+              }
         },
         deleteReview: {
             type: ReviewsType,

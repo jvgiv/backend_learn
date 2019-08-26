@@ -10,9 +10,8 @@ function findById(id) {
         .first()
 }
 
-async function insert(user) {
-    const [id] = await db('users').insert(user, 'id')
-    return findById(id)
+function insert(user) {
+    return db('users').insert(user)
 }
 
 async function update(id, changes) {

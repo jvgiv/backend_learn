@@ -14,9 +14,8 @@ function findByUserId(userId) {
     return db('skills').where({ userId })
 }
 
-async function insert(skill) {
-    const [id] = await db('skills').insert(skill, 'id')
-    return findById(id)
+function insert(skill) {
+    return db('skills').insert(skill)
 }
 
 async function update(id, changes) {
