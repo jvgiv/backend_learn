@@ -10,6 +10,12 @@ function findById(id) {
         .first()
 }
 
+function findByEmail(email) {
+    return db('users')
+        .where({ email })
+        .first()
+}
+
 function insert(user) {
     return db('users').insert(user)
 }
@@ -32,5 +38,6 @@ module.exports = {
     findById,
     insert,
     update,
-    remove
+    remove,
+    findByEmail
 }

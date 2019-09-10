@@ -6,7 +6,7 @@ const Reviews = require('../models/reviewModel.js')
 // Need to make types in type file
 const { UserType, LessonType, SkillsType, ReviewsType } = require('./types.js')
 
-const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
+const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull, GraphQLString } = graphql;
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -38,6 +38,23 @@ const RootQuery = new GraphQLObjectType({
                             return res
                         }
                         return new Error("The user could not be found.")
+                    })
+                    .catch(() => {
+                        return new Error("There was an error completing your request.")
+                    })
+            }
+        },
+        getUserByEmail: {
+            type: UserType,
+            description: "Gets a user by ID",
+            args: { email: { type: new GraphQLNonNull(GraphQLString) } },
+            resolve(parent, args) {
+                return User.findByEmail(args.email)
+                    .then(res => {
+                        if (res) {
+                            return res
+                        }
+                        return new Error("The email could not be found.")
                     })
                     .catch(() => {
                         return new Error("There was an error completing your request.")
