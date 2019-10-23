@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
             .references('id')
             .inTable('users')
             .onDelete('CASCADE')
-            .notNull();
+            .notNullable();
     })
 }
 

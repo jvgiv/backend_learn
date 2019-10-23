@@ -1,7 +1,18 @@
 const db = require('../database/dbConfig.js')
 
-function find () {
-    return db('users')
+async function find () {
+    // let query = await db('users')
+    // let skillsQuery = await db('skills').where({ user_id: query.id})
+
+
+
+    // return { ...query, skills: skillsQuery}
+    // return db('users')
+
+
+    // return "" 
+    return await db('users')
+
 }
 
 function findById(id) {
